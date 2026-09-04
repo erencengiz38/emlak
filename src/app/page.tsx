@@ -17,6 +17,8 @@ async function getCityFromIp(ip: string): Promise<string> {
   return 'Unknown';
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   const headersList = await headers();
   const forwardedFor = headersList.get('x-forwarded-for');
@@ -43,10 +45,9 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
       {/* 1 saniye sonra YouTube videosuna yönlendirecek meta etiketi */}
-      <meta httpEquiv="refresh" content="1;url=https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
       
       <h1 className="text-4xl font-extrabold text-gray-800">
-        Yönlendiriliyor...
+        asd...
       </h1>
     </div>
   );

@@ -1,7 +1,13 @@
 import { createClient } from '@libsql/client';
 import path from 'path';
 
-const dbPath = path.join(process.cwd(), 'database.sqlite');
+// Vercel'de process.cwd() read-only olduğu için /tmp dizinini kullanmak zorundayız.
+// DİKKAT: /tmp dizini Vercel'de kalıcı değildir, veriler sıfırlanabilir.
+const isVercel = process.env.VERCEL === '1' || process.env.NODE_ENV === 'production';
+const dbPath = isVercel 
+  ? path.join('/tmp', 'database.sqlite') 
+  : path.join(process.cwd(), 'database.sqlite');
+  
 const db = createClient({
   url: `file:${dbPath}`,
 });
